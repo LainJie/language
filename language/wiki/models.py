@@ -1,26 +1,30 @@
 from django.db import models
-from django.template.defaultfilters import slugify
-import random
+
+
+
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
-    views = models.IntegerField()
-    likes = models.IntegerField()
-    slug = models.SlugField(unique=True)
+    views = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0)
     
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        if not self.slug:
-            self.slug = self.name.replace(' ', '-')
+    def save(self, *args, **kwargs):    
+        self.name= self.name.replace(' ', '-')
         super(Category, self).save(*args, **kwargs)
+    
     def __str__(self):
-       return self.name
+        return self.name
    
 class Page(models.Model):
-       category = models.ForeignKey(Category)
-       title = models.CharField(max_length=128,unique=True)
-       url = models.URLField()
-       views = models.IntegerField(default=0)
+    category = models.ForeignKey(Category)
+    title = models.CharField(max_length=128,unique=True)
+    url = models.URLField()
+    views = models.IntegerField(default=0)
        
-       def __str__(self):
-           return self.title
+    def save(self, *args, **kwargs):       
+        self.title= self.title.replace(' ', '-')
+        super(Page, self).save(*args, **kwargs)   
+       
+       
+    def __str__(self):
+        return self.title

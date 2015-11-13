@@ -13,15 +13,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.AutoField(serialize=False, auto_created=True, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('name', models.CharField(max_length=128, unique=True)),
+                ('views', models.IntegerField()),
+                ('likes', models.IntegerField()),
             ],
         ),
         migrations.CreateModel(
             name='Page',
             fields=[
-                ('id', models.AutoField(serialize=False, auto_created=True, primary_key=True, verbose_name='ID')),
-                ('title', models.CharField(max_length=128)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
+                ('title', models.CharField(max_length=128, unique=True)),
                 ('url', models.URLField()),
                 ('views', models.IntegerField(default=0)),
                 ('category', models.ForeignKey(to='wiki.Category')),
