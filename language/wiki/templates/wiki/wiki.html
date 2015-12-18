@@ -1,17 +1,11 @@
-<!doctype html>
-{% load staticfiles %}
-<html>
-<head>
-<title>程式語言小百科</title>
-<meta charset=utf-8>
-<link rel=stylesheet href={% static 'main/css/main.css' %}>
-</head>
-<body>
-<h1>Wiki 說--Hello world!</h1>
+{% extends "main/base.html" %}
+{% block heading %}程式語言分類{% endblock %}
+{% block content %}
+
 {% if categories %}
-  <h2>程式語言類別:</h2>
+ 
   <table>
-    <tr><th>分類名稱</th><th></th><th></th></tr>
+    <tr><th>車廠分類</th><th></th><th></th></tr>
    {% for category in categories %}
     <tr>
       <td>
@@ -35,7 +29,6 @@
     <p><strong>目前尚未設定程式語言類別。</strong></p>
 {% endif %}
 
-<p><a href={% url 'wiki:addCategory' %}>新增程式語言分類</a></p>
+<p><a href={% url 'wiki:addCategory' %}>新增車廠</a></p>
 <p><a href={% url 'main:main' %}>回首頁</a></p>
-</body>
-</html>
+{% endblock %}

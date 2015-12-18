@@ -1,15 +1,10 @@
-<!doctype html>
-{% load staticfiles %}
-<html>
-<head>
-<title>程式語言小百科</title>
-<meta charset=utf-8>
-<link rel=stylesheet href={% static 'main/css/main.css' %}>
-</head>
-<body>
-<h1>Django 說--Hello world!</h1>
-<p>{{message}}</p>
-<p><a href={% url 'wiki:wiki' %}>前往 Wiki 頁面</a></p>
-<p><a href={% url 'wiki:about' %}>關於程式語言小百科</a></p>
-</body>
-</html>
+{% extends "main/base.html" %}
+{% block heading %}首頁{% endblock %}
+{% block content %}
+
+
+<h1>歡迎來到機車廠牌wiki</h1>
+<h3>本站提供各種台灣現有廠牌機車詳細資訊</h3>
+<p><a href={% url 'wiki:wiki' %}>進入並選取想查詢廠牌</a></p>
+<p><a href={% url 'wiki:about' %}>關於機車的歷史</a></p>
+{% endblock %}
