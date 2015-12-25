@@ -1,10 +1,22 @@
 {% extends "main/base.html" %}
 {% block heading %}首頁{% endblock %}
 {% block content %}
+{% if messages %}
+    {% for message in messages %}
+    <p {% if message.tags %} class={{message.tags}} {% endif %}>{{message}}</p>
+    {% endfor %}
+{% endif %}
+
 
 
 <h1>歡迎來到機車廠牌wiki</h1>
 <h3>本站提供各種台灣現有廠牌機車詳細資訊</h3>
 <p><a href={% url 'wiki:wiki' %}>進入並選取想查詢廠牌</a></p>
 <p><a href={% url 'wiki:about' %}>關於機車的歷史</a></p>
+{% if user.is_authenticated %}
+   <p><a href={% url 'account:userLogout' %}>登出 ({{user.username}})</a></p>
+{% else %}
+<p><a href={% url 'account:register' %}>註冊</a></p>
+<p><a href={% url 'account:userLogin' %}>登入</a></p>
+{% endif %}
 {% endblock %}

@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'main', 
     'wiki',
+    'account',
     )
 
 MIDDLEWARE_CLASSES = (
@@ -117,6 +118,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+LOGIN_URL = '/account/userLogin/'
 if DEBUG==False: # Running on Heroku
     STATIC_ROOT = 'staticfiles'
 
